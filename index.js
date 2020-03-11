@@ -8,6 +8,7 @@ var faker = new Faker({
 	locale: 'km'
 });
 
+// Use non-width space to separate each word
 faker.lorem.words = function (num) {
 	if (typeof num == 'undefined') { num = 3; }
 	var words = [];
@@ -16,9 +17,10 @@ faker.lorem.words = function (num) {
 			words.push(' ')
 		words.push(faker.lorem.word());
 	}
-	return words.join('');
+	return words.join('​');
 };
 
+// Use ។ instead of .
 faker.lorem.sentence = function (wordCount) {
 	if (typeof wordCount == 'undefined') {
 		wordCount = faker.random.number({ min: 3, max: 10 });
@@ -27,24 +29,23 @@ faker.lorem.sentence = function (wordCount) {
 	return sentence + (faker.random.number({ max: 10 }) > 1 ? ' ។' : ' ?');
 };
 
+// No space between words
 faker.commerce.productName = function () {
-	return faker.commerce.product() +
-		faker.commerce.productMaterial() +
+	return faker.commerce.product() + '​' +
+		faker.commerce.productMaterial() + '​' +
 		faker.commerce.productAdjective();
 };
 
+// Implement Khmer company name format
 faker.company.companyName = function (format) {
-
 	var formats = [
 		'{{name.lastName}} {{company.companySuffix}}',
 		'{{name.firstName}} {{name.lastName}} {{company.companySuffix}}',
 		'{{name.lastName}} និង {{name.lastName}}'
 	];
-
 	if (typeof format !== "number") {
 		format = faker.random.number(formats.length - 1);
 	}
-
 	return faker.fake(formats[format]);
 }
 

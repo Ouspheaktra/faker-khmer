@@ -1,0 +1,10 @@
+var km = {};
+module['exports'] = km;
+km.title = "Khmer";
+km.address = require("./address");
+km.commerce = require('./commerce');
+km.company = require("./company");
+km.date = require('./date');
+km.lorem = require("./lorem");
+km.name = require("./name");
+km.phone_number = require("./phone_number");
